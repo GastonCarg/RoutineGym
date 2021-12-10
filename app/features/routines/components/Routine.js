@@ -1,28 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet,TouchableOpacity, Image } from "react-native";
 import moment from "moment";
+import { useSelector, useDispatch } from "react-redux";
 
 import images from '../../../constants/Images'
 
 const Routine = (data) => {
 
     const date = data.item.created;
+    const exercisesQuantity = data.item.exercises.length;
+    const name = data.item.name;
+    const id = data.item._id;
+
     return(
         <View style={styles.container}>
-            <TouchableOpacity style={styles.routineContainer}>
+            <TouchableOpacity style={styles.routineContainer} onPress={()=>console.log('Open workouts')}>
                 <View style={styles.iconStyle}>
                     <Image source={images.weightLifter} />
                 </View>
                 <View style={styles.routineDataContainer}>
                     <View style={[styles.flex, styles.paddingComponents]}>
-                        <Text style={styles.nameStyle}>{data.item.name}</Text>
+                        {/* TODO: Investigar para hacer que se desplace el texto si es más largo que el componente */}
+                        <Text style={styles.nameStyle} numberOfLines={1}>{name}</Text>
                     </View>
                     <View style={[styles.exercisesContainer]}>
-                        <Text style={styles.exercisesStyle}>Cantidad de ejercicios: {data.item.exercises}</Text>
+                        <Text style={styles.exercisesStyle}>Cantidad de ejercicios: {exercisesQuantity}</Text>
                     </View>
                     <View style={[styles.dateContainer, styles.paddingComponents]}>
                         <View style={styles.flex}>
-                            <Text style={styles.dateStyle}>{moment(data.item.created).format('DD/MM/YY hh:mm')}</Text>
+                            <Text style={styles.dateStyle}>{moment(date).format('DD/MM/YY hh:mm')}</Text>
                         </View>
                     </View>
                 </View>
@@ -49,13 +55,16 @@ const styles = StyleSheet.create({
     },
     flex:{
         flex: 1,
+        flexDirection: 'row'
     },
     paddingComponents: {
-        paddingVertical: 5
+        paddingVertical: 5,
+        paddingRight: 5
     },
     nameStyle:{
         fontSize: 28,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        flex:1
     },
     iconStyle: {
         justifyContent: "center",

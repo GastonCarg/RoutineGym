@@ -13,7 +13,7 @@ export const getProfiles = (profile) => {
 
             // Simulamos una llamada a la API
             await sleep(1000 * 3);
-            await axios.get('https://www.google.com');
+            // await axios.get('https://www.google.com');
 
             dispatch({
                 type: REQUEST_PROFILE_FULLFILLED,

@@ -1,29 +1,29 @@
 
 import {
-    REQUEST_ROUTINES,
-    REQUEST_ROUTINES_FULLFILLED,
-    REQUEST_ROUTINES_REJECTED
+    REQUEST_WORKOUTS,
+    REQUEST_WORKOUTS_FULLFILLED,
+    REQUEST_WORKOUTS_REJECTED
 } from '../constants/actions';
 
 const initialState = {
     status: 'idle',
-    routines: [],
+    workouts: [],
 };
 
-export default function routines(state = initialState, action) {
+export default function workouts(state = initialState, action) {
     switch (action.type) {
-        case REQUEST_ROUTINES:
+        case REQUEST_WORKOUTS:
             return {
                 ...state,
                 status: 'pending',
             };
-        case REQUEST_ROUTINES_FULLFILLED:
+        case REQUEST_WORKOUTS_FULLFILLED:
             return {
                 ...state,
                 status: 'fullfilled',
-                routines: [...state.routines, ...action.payload.routines],
+                workouts: [...state.workouts, ...action.payload.workouts],
             };
-        case REQUEST_ROUTINES_REJECTED:
+        case REQUEST_WORKOUTS_REJECTED:
             return {
                 ...state,
                 status: 'rejected',

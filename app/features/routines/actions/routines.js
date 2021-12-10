@@ -13,59 +13,17 @@ export const getRoutines = (routine) => {
         try{
             dispatch({ type: REQUEST_ROUTINES });
 
-            // Simulamos llamada a la API
-            // TODO: Cuando esté listo el back agregar esta parte
-            await sleep(1000 * 3);
-            // await axios.get('https://www.google.com');
-
-            let dateNow = new Date();
-
-            const routine = [
-                {
-                    id: 1,
-                    name: 'rutina 1',
-                    exercises: 5,
-                    created: dateNow,
-                },
-                {
-                    id: 2,
-                    name: 'rutina 2',
-                    exercises: 7,
-                    created: dateNow,
-                },
-                {
-                    id: 3,
-                    name: 'rutina 3',
-                    exercises: 4,
-                    created: dateNow,
-                },
-                {
-                    id: 4,
-                    name: 'rutina 4',
-                    exercises: 9,
-                    created: dateNow,
-                },
-                {
-                    id: 5,
-                    name: 'rutina 5',
-                    exercises: 6,
-                    created: dateNow,
-                }
-            ]
+            const response = await axios.get('http://192.168.0.181:3000/api/v1/routines');
 
             dispatch({
                 type: REQUEST_ROUTINES_FULLFILLED,
                 payload: {
-                    routines: [ ...getState().routines.routines, ...routine ],
+                    routines: [ ...response.data.routines ],
                 },
             })
         }
-        catch {
-            dispatch({ type: REQUEST_ROUTINES_REJECTED })
+        catch (err) {
+            dispatch({ type: REQUEST_ROUTINES_REJECTED, msg: err })
         }
     }
 }
-
-const sleep = async (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-};

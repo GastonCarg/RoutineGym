@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -31,7 +31,7 @@ const RoutinesList = () => {
                         <FlatList
                             data={routines}
                             renderItem={Routine}
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item._id}
                         />
                     </View>
             }
@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        // padding:5
+        justifyContent: 'flex-start'
     },
     centerContent: {
         justifyContent: 'center',
