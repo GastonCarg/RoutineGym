@@ -5,14 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import images from '../../../constants/Images'
 
-const Routine = (data) => {
-
-    const date = data.item.created;
-    const exercisesQuantity = data.item.exercises.length;
-    const name = data.item.name;
-    const id = data.item._id;
-
-    return(
+const Routine = ({ item: { created, exercises, name } }) => {
+    return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.routineContainer} onPress={()=>console.log('Open workouts')}>
                 <View style={styles.iconStyle}>
@@ -24,18 +18,17 @@ const Routine = (data) => {
                         <Text style={styles.nameStyle} numberOfLines={1}>{name}</Text>
                     </View>
                     <View style={[styles.exercisesContainer]}>
-                        <Text style={styles.exercisesStyle}>Cantidad de ejercicios: {exercisesQuantity}</Text>
+                        <Text style={styles.exercisesStyle}>Cantidad de ejercicios: {exercises.length}</Text>
                     </View>
                     <View style={[styles.dateContainer, styles.paddingComponents]}>
                         <View style={styles.flex}>
-                            <Text style={styles.dateStyle}>{moment(date).format('DD/MM/YY hh:mm')}</Text>
+                            <Text style={styles.dateStyle}>{moment(created).format('DD/MM/YY hh:mm')}</Text>
                         </View>
                     </View>
                 </View>
             </TouchableOpacity>
         </View>
-    )
-
+    );
 }
 
 const styles = StyleSheet.create({

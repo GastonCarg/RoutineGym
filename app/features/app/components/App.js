@@ -7,6 +7,7 @@ import RoutinesList from '../../routines/components/RoutinesList';
 import NavBar from '../../navBar/components/NavBar';
 import TabIcon from './TabIcon';
 import Profiles from '../../profiles/components/Profiles'
+import WorkoutList from '../../workouts/components/WorkoutList'
 
 import { changeView } from '../actions/app';
 
@@ -34,6 +35,8 @@ const App = () => {
                             >
                                 <Stack key="routineStack" icon={TabIcon} title="routineStack">
                                     <Scene key="routineList" initial component={RoutinesList} title="RoutineList"
+                                    // TODO: Agregar la nueva escena para los workouts
+                                    // <Scene key="routineList" initial component={WorkoutList} title="RoutineList"
                                     onEnter={() => onEnterStack('routineStack')}/>
                                 </Stack>
                                 <Stack key="profileStack" icon={TabIcon} title="profileStack">

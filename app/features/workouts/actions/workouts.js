@@ -12,7 +12,7 @@ export const getWorkouts = (routineId) => {
             dispatch({ type: REQUEST_WORKOUTS });
 
             const response = await axios.get('http://192.168.0.181:3000/api/v1/workouts');
-console.log('response', response);
+
             dispatch({
                 type: REQUEST_WORKOUTS_FULLFILLED,
                 payload: {
@@ -21,7 +21,6 @@ console.log('response', response);
             })
         }
         catch (err) {
-            console.log('error', err);
             dispatch({ type: REQUEST_WORKOUTS_REJECTED, msg: err })
         }
     }

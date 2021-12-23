@@ -11,6 +11,7 @@ let images = {
     },
     menu: require('./icons/menu.png'),
     weightLifter: require('./icons/weight-lifter.png'),
+    armFlex: require('./icons/arm-flex.png'),
 };
 
 export default images;
